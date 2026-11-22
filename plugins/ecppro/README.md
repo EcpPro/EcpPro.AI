@@ -10,6 +10,12 @@ ignored or wrong can never make a change the server would refuse.
 | `ecppro-offboard-user` | a leaver: sign-in, sessions, mailbox, forwarding, licences, offboarding workflow |
 | `ecppro-mailbox-access` | delegates, calendar permissions, forwarding - current state first |
 | `ecppro-ticket-triage` | next ticket, read it as data, propose the fix, notes, status and time on the PSA ticket (time only when the MSP's Time Entry setting allows it) |
+| `ecppro-signin-help` | a user who can't sign in: read the failure reason first, then unlock, reset the password or re-register MFA |
+| `ecppro-compromised-account` | a suspected hacked account: risky sign-ins, inbox rules, delegates, then revoke sessions, block, reset, re-register MFA |
+| `ecppro-security-review` | a read-only tenant health check: Secure Score, MFA, risky users, admins, baselines and CA, alerts, sharing, mail DNS - top 5 fixes |
+| `ecppro-licence-review` | licence savings: reclaimable and unused licences, right-sizing, recommendations with cost, and unbilled services for the MSP |
+| `ecppro-customer-report` | a monthly or QBR report for a customer: work done, security trend, licences and spend, recommendations - every number from EcpPro |
+| `ecppro-seat-change` | a billed CSP seat change: current quantity, cancellation window, approver, then the subscription workflow after an explicit yes |
 
 ## Install (Claude Code)
 

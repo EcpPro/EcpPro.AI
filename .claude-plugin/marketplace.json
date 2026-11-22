@@ -10,8 +10,8 @@
     {
       "name": "ecppro",
       "source": "./plugins/ecppro",
-      "description": "Workflow skills for the EcpPro MCP server: onboard and offboard users, grant mailbox access, and triage service desk tickets.",
-      "version": "0.1.0",
+      "description": "Workflow skills for the EcpPro MCP server: onboard and offboard users, mailbox access, ticket triage, sign-in help, compromised accounts, security and licence reviews, customer reports and seat changes.",
+      "version": "0.2.0",
       "license": "MIT",
       "homepage": "https://www.ecppro.com/mcp/setup/"
     }
