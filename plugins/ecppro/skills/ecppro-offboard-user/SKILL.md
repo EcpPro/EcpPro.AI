@@ -47,7 +47,10 @@ Otherwise, the individual steps (each is two-step - see below):
 - `ecppro_mailbox_change action=set_email_forward`
 - `ecppro_users_change action=update_licenses` to remove licences - read `ecppro_users view=licenses` first and
   remove only **directly assigned** ones. A licence that comes from a group isn't removed this way (the call
-  reports success but changes nothing): take the user out of that group with `change_group_membership`.
+  reports success but changes nothing): it goes when the user leaves that group (`change_group_membership`).
+  A group can grant **more than one** licence and other access too - check what it gives before proposing the
+  removal, keep anything the mailbox still needs, and if the unwanted licence can't be separated from the rest,
+  leave the membership and say so.
 
 ## 4. Two-step etiquette
 
