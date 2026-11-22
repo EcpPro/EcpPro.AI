@@ -11,10 +11,11 @@ it reports findings and suggested fixes, and changes nothing.
 
 ## 1. Pick the scope
 
-- Many tenants (all of an MSP's clients)? Start wide: `ecppro_policies view=assignments_overview` (compliance
+- Many tenants (all of the MSP's customers)? Start wide: `ecppro_policies view=assignments_overview` (compliance
   per tenant), `ecppro_reporting view=compliance_latest` with metric SECURE_SCORE, `ecppro_reporting
   view=mfa_compliance` and `ecppro_security view=customer_risky_users`. Then look in depth at the worst tenants.
-  In EcpPro a CUSTOMER entity is usually the MSP's own account, so the `customer_*` views span every client.
+  In EcpPro's data the CUSTOMER entity (`customerGuid`) is the MSP itself, so the `customer_*` views span all of
+  its customers (tenants); to the tech, "a customer" is one of those tenants.
 - One tenant: go straight to step 2.
 
 ## 2. Check each area (reads only)

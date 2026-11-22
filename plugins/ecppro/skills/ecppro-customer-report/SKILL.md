@@ -1,6 +1,6 @@
 ---
 name: ecppro-customer-report
-description: Build a monthly or quarterly business review (QBR) report for an MSP's client from EcpPro - what changed, work done, security and MFA trend, licence use and cost, Copilot adoption, and recommendations. Use when someone asks for a customer report, QBR, monthly summary, account review, "what did we do for this customer", or a health summary to send to a customer managed in EcpPro.
+description: Build a monthly or quarterly business review (QBR) report for an MSP's customer from EcpPro - what changed, work done, security and MFA trend, licence use and cost, Copilot adoption, and recommendations. Use when someone asks for a customer report, QBR, monthly summary, account review, "what did we do for this customer", or a health summary to send to a customer managed in EcpPro.
 ---
 
 # Customer report (monthly / QBR) with EcpPro
@@ -10,22 +10,23 @@ Uses the EcpPro MCP server's tools. Before first using a view, call
 
 ## 1. Agree the brief
 
-- The client, period (default: last calendar month; QBR: last 3 months), and audience (client executive, client
+- The customer, period (default: last calendar month; QBR: last 3 months), and audience (customer executive, customer
   IT, or internal account manager). Executive reports lead with outcomes and money; IT reports can carry detail.
-- Find the client's tenant with `ecppro_search view=entities` (entityType T), or its tenant group (TG) when the
-  client has several tenants.
-- **Watch the word "customer".** In EcpPro a CUSTOMER entity is usually the MSP's own account, and the MSP's
-  clients are its tenants and tenant groups (`ecppro_search view=entity` shows the type). The `customer_*` views
-  span **every client of the MSP** - never build one client's report from them.
+- Find the customer's tenant with `ecppro_search view=entities` (entityType T), or its tenant group (TG) when the
+  customer has several tenants.
+- **"Customer" means two things.** To the MSP tech asking, the customer is one of their tenants (an end-customer),
+  or a tenant group holding several of that customer's tenants. In EcpPro's data, the CUSTOMER entity
+  (`customerGuid`) is the MSP itself, so the `customer_*` views span **all of the MSP's customers** - never build
+  one customer's report from them. `ecppro_search view=entity` shows an entity's type.
 
 ## 2. Gather (reads only, for the agreed period)
 
-`entityGuid` below = the client's tenant, or its tenant group.
+`entityGuid` below = the customer's tenant, or its tenant group.
 
 | Section | Views |
 |---|---|
 | Work done | `ecppro_reporting view=change_log` (entityGuid, from, to) - leave out the automated rows (actioned by an EcpPro service account, such as "EcpPro LRT Service", and routine refreshes) and count what people did |
-| Security | `ecppro_security view=secure_score` (the score and its daily history), `ecppro_security view=auth_methods`, `ecppro_reporting view=mfa_compliance` (with the tenant's parent; read the client's own row), `ecppro_security view=risky_users`, `ecppro_alerts view=security_alerts` |
+| Security | `ecppro_security view=secure_score` (the score and its daily history), `ecppro_security view=auth_methods`, `ecppro_reporting view=mfa_compliance` (with the tenant's parent; read the tenant's own row), `ecppro_security view=risky_users`, `ecppro_alerts view=security_alerts` |
 | Trend | `ecppro_reporting view=compliance_trend` - every metric for every day, so it is long: compare the first and last value of the metrics you report |
 | Baselines | `ecppro_policies view=tenant_compliance` (entityGuid and tenantGuid = the tenant) |
 | Licences and cost | `ecppro_licences view=tenant_summary`, `ecppro_licences view=reclaimable`, `ecppro_licences view=user_costs`, `ecppro_billing view=azure_spend` |
