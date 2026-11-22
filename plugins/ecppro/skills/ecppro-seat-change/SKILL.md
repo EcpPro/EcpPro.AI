@@ -25,8 +25,9 @@ Never launch one the requester hasn't explicitly confirmed with the exact subscr
   A decrease is usually only possible inside the cancellation window (`cancellationAllowedUntilDate`); after it,
   the seats stay until the term ends. Inside the commitment, the workflow needs a `licenseChangeDate` - agree it
   with the requester (often the renewal date).
-- **Increase:** say what it adds to the bill (quantity x price per the term) using the figures from
-  `ecppro_tenants view=subscriptions`. Mark it an estimate.
+- **Increase:** say what it adds to the bill: (new quantity - current quantity) x unit price, per billing period,
+  using the figures from `ecppro_tenants view=subscriptions`. Say the billing period, and that the first charge
+  is usually prorated for the days left in it. Mark it an estimate.
 - **Approval:** `ecppro_billing view=approval_chain` shows who approves subscription changes. Tell the requester
   if the change will wait for someone's approval.
 - **Billing to the customer:** if the customer is invoiced through an agreement, a quantity change may need the

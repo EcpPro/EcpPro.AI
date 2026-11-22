@@ -40,7 +40,7 @@ Tell the requester the cause in one or two sentences before proposing a fix.
 |---|---|
 | Locked out on-prem | `ecppro_users_change action=unlock_onprem` |
 | Forgot password | `ecppro_users_change action=reset_password` - ask who receives the one-time link (the user, their manager, the tech, an email or phone). The password and link never appear in chat. |
-| Lost phone / new phone | `ecppro_users_change action=require_mfa_reregistration` - removes their methods so they register again at next sign-in. Their password is unchanged. |
+| Lost phone / new phone | `ecppro_users_change action=require_mfa_reregistration` - removes their methods so they register again at next sign-in. Their password is unchanged. If the tenant's policies stop them registering (for example registration only from a trusted location), they need a Temporary Access Pass - EcpPro can't issue one, so point the tech to the Entra admin centre, or the tenant's own recovery process. |
 | Disabled by mistake | `ecppro_users_change action=enable` - only once the requester confirms the block wasn't deliberate |
 | Missing licence | use the `ecppro-onboard-user` skill's licence step (`ecppro_users_change action=update_licenses`) |
 
