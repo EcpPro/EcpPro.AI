@@ -1,7 +1,7 @@
 {
   "name": "ecppro",
-  "version": "0.1.0",
-  "description": "Workflow skills for the EcpPro MCP server: onboard and offboard users, grant mailbox access, and triage service desk tickets. Connect the EcpPro MCP server (your instance URL, https://<instance>-mcp.ecppro.com/<instance>/mcp) first - these skills only guide how to use its tools.",
+  "version": "0.2.0",
+  "description": "Workflow skills for the EcpPro MCP server: onboard and offboard users, mailbox access, ticket triage, sign-in help, compromised accounts, security and licence reviews, customer reports and seat changes. Connect the EcpPro MCP server (your instance URL, https://<instance>-mcp.ecppro.com/<instance>/mcp) first - these skills only guide how to use its tools.",
   "author": {
     "name": "EcpPro"
   },
