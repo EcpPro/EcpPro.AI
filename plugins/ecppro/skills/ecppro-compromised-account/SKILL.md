@@ -27,6 +27,9 @@ active; otherwise do the quick checks in step 2 first.
 - `ecppro_users view=mfa_methods` - methods the user doesn't recognise (an attacker's phone or authenticator).
 - Forwarding can't be read through EcpPro (`ecppro_mailbox view=settings` always shows it empty) - say so.
 
+If a per-user view fails, fall back to the tenant-wide ones: `ecppro_security view=signins`,
+`ecppro_security view=risky_signins` and `ecppro_security view=risk_detections`, and pick this user's rows.
+
 Summarise what points to compromise and what doesn't, in a few lines.
 
 ## 3. Contain - propose the steps, then run each with its own yes
