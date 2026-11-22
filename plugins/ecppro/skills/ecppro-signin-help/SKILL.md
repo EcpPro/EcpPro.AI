@@ -34,6 +34,9 @@ Diagnose first, then fix. Most sign-in calls are not a password problem.
 
 Tell the requester the cause in one or two sentences before proposing a fix.
 
+If a per-user view fails, `ecppro_security view=signins` lists the whole tenant's sign-ins (newest first, with
+status, app, IP and location): pick this user's rows.
+
 ## 3. Fix - one step at a time, each with an explicit yes
 
 | Cause | Action |

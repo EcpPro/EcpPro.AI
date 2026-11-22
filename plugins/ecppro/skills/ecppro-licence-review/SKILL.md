@@ -1,6 +1,6 @@
 ---
 name: ecppro-licence-review
-description: Find licence savings for a customer in EcpPro - unused and reclaimable licences, right-sizing candidates, licences paid for but not billed, and the net cost of each recommendation. Use when someone asks to review licences, cut Microsoft 365 costs, find unused or wasted licences, right-size users, or check for unbilled subscriptions for a customer or tenant managed in EcpPro.
+description: Find licence savings for a client tenant (or across all of an MSP's clients) in EcpPro - unused and reclaimable licences, right-sizing candidates, licences paid for but not billed, and the net cost of each recommendation. Use when someone asks to review licences, cut Microsoft 365 costs, find unused or wasted licences, right-size users, or check for unbilled subscriptions for a customer or tenant managed in EcpPro.
 ---
 
 # Licence review and cost savings with EcpPro
@@ -11,32 +11,40 @@ Uses the EcpPro MCP server's tools. Before first using a view or action, call
 
 ## 1. Pick the scope
 
-- No customer or tenant named? Call `ecppro_core view=my_scope`, then find it with `ecppro_search view=entities`
-  or `ecppro_tenants view=list`.
-- A whole customer: start with the customer views below, and drill into a tenant only where the savings are.
+- Find the client's tenant with `ecppro_search view=entities` (entityType T) or `ecppro_tenants view=list`; with
+  no page context, start from `ecppro_core view=my_scope`.
+- **Watch the word "customer".** In EcpPro a CUSTOMER entity is usually the MSP's own account, and the MSP's
+  clients are its tenants (or tenant groups holding several tenants). `ecppro_search view=entity` shows the type.
+  The `customer_*` views below therefore cover **every client of the MSP** - use them for an MSP-wide sweep, not
+  for one client's review.
 
 ## 2. Gather the evidence (reads only)
 
-Customer level:
+MSP-wide sweep (customerGuid = the MSP's CUSTOMER entity):
 - `ecppro_licences view=customer_summary` - quantity vs assigned vs available per subscription.
 - `ecppro_licences view=customer_reclaimable` - licences on disabled or inactive users.
 - `ecppro_licences view=customer_recommendation_summary` - recommendation counts and net cost.
 - `ecppro_billing view=unbilled_services` - subscriptions the MSP pays for with no matching agreement line, so
-  they are not invoiced to the customer. This is lost MSP revenue, not a customer saving - report it separately.
+  they are not invoiced to the client. This is lost MSP revenue, not a client saving - report it separately, and
+  never in anything the client sees.
 
-Tenant level (where the money is):
+One client's tenant (where the money is):
 - `ecppro_licences view=reclaimable`, `ecppro_licences view=rightsizing_users`, `ecppro_licences view=recommendations` (per user, with confidence).
 - `ecppro_licences view=utilisation` (assigned vs active) and `ecppro_licences view=user_activity`.
 - `ecppro_licences view=user_costs` - a monthly dollar figure for each user.
 - `ecppro_licences view=rec_exclusions` - users the MSP has deliberately excluded; leave them out.
+
+No subscriptions and every cost $0? The licences aren't bought through the MSP's CSP connection in EcpPro (for
+example direct from Microsoft, or a trial or developer tenant), so EcpPro has no prices. Report seat counts and
+unused licences, say that dollar figures aren't available, and don't invent prices.
 
 ## 3. Present a short savings report
 
 - A table: user (or subscription), current licence, finding (unused / disabled / downgrade / unassigned seat),
   monthly cost, recommended action, confidence.
 - A total monthly and annual saving, saying which figures are estimates.
-- Two sections: **customer savings** (seats to drop, users to downgrade) and **MSP billing gaps** (unbilled
-  services).
+- Two sections: **client savings** (seats to drop, users to downgrade) and **MSP billing gaps** (unbilled
+  services, internal only).
 - Be honest about the evidence: low activity is not proof a licence is unused (shared mailboxes, service
   accounts, seasonal staff, litigation hold). Ask the requester to confirm before anything changes.
 

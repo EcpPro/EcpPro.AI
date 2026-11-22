@@ -11,19 +11,20 @@ it reports findings and suggested fixes, and changes nothing.
 
 ## 1. Pick the scope
 
-- Many tenants? Start wide: `ecppro_policies view=assignments_overview` (compliance per tenant),
-  `ecppro_reporting view=compliance_latest` with metric SECURE_SCORE, `ecppro_reporting view=mfa_compliance`
-  and `ecppro_security view=customer_risky_users`. Then look in depth at the worst tenants.
+- Many tenants (all of an MSP's clients)? Start wide: `ecppro_policies view=assignments_overview` (compliance
+  per tenant), `ecppro_reporting view=compliance_latest` with metric SECURE_SCORE, `ecppro_reporting
+  view=mfa_compliance` and `ecppro_security view=customer_risky_users`. Then look in depth at the worst tenants.
+  In EcpPro a CUSTOMER entity is usually the MSP's own account, so the `customer_*` views span every client.
 - One tenant: go straight to step 2.
 
 ## 2. Check each area (reads only)
 
 | Area | Views |
 |---|---|
-| Score and trend | `ecppro_security view=secure_score`, `ecppro_reporting view=compliance_trend` |
-| MFA | `ecppro_reporting view=mfa_compliance`, `ecppro_security view=auth_methods`, `ecppro_tenants view=mfa_unknown` (why users show Unknown) |
+| Score and trend | `ecppro_security view=secure_score` (its recommendation list is long - keep `top` small and focus on the ones not completed, by score impact) |
+| MFA | `ecppro_security view=auth_methods` (per user: MFA registered, methods); `ecppro_reporting view=mfa_compliance` takes the tenant's **parent** (tenant group or customer) - a tenant GUID answers empty - so read the tenant's own row (loginEnabled vs mfaEnabled, privileged and not); `ecppro_tenants view=mfa_unknown` (why users show Unknown) |
 | Identity risk | `ecppro_security view=risky_users`, `ecppro_security view=risky_signins`, `ecppro_security view=risk_detections` |
-| Privileged access | `ecppro_security view=admin_role_holders` - flag disabled, guest or shared accounts holding admin roles, and any admin without strong MFA |
+| Privileged access | `ecppro_security view=admin_role_holders` lists role and userGuid only - match each userGuid to the `ecppro_security view=auth_methods` rows (their entityGuid) for the name and MFA state. Flag disabled, guest or shared accounts holding admin roles, more than a few Global Administrators, and any admin without MFA |
 | Baselines and CA | `ecppro_policies view=tenant_compliance` (desired vs actual), `ecppro_policies view=ca_unmanaged`, `ecppro_policies view=ca_break_glass`, `ecppro_policies view=ca_promotion` (what enforcing report-only policies would affect) |
 | Alerts | `ecppro_alerts view=security_alerts` (refreshes from Graph first, so it is slower) |
 | Data sharing | `ecppro_security view=sharing_links` (riskiest first), `ecppro_security view=sharing_scan` |
