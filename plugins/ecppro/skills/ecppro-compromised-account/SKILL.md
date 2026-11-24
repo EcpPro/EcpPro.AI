@@ -36,8 +36,8 @@ Summarise what points to compromise and what doesn't, in a few lines.
 
 Suggested order (the requester can drop any):
 1. `ecppro_users_change action=revoke_sessions` - revokes the user's refresh tokens and session cookies, so no
-   device can renew a sign-in. Access tokens already issued stay valid until they expire (usually within an hour),
-   which is why blocking sign-in (step 2) matters.
+   device can renew a sign-in. Access tokens already issued stay valid until they expire (usually within an hour);
+   blocking sign-in (step 2) stops the attacker getting new ones after that.
 2. `ecppro_users_change action=disable` - blocks sign-in (undo: `enable`). Skip it if the user must keep working
    and the requester accepts the risk.
 3. `ecppro_users_change action=reset_password` - ask who receives the one-time link (the user's manager, the
