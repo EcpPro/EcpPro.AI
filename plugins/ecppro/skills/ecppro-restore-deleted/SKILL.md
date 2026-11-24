@@ -22,8 +22,10 @@ first and tell the requester the deadline.
 
 ## 2. OneDrive files
 
-- Deleted user's OneDrive: `ecppro_mailbox view=onedrive_retention` gives the tenant's retention period - the files
-  are kept that long after the user is deleted.
+- Deleted user's OneDrive: `ecppro_mailbox view=onedrive_retention` gives the tenant's retention period - the
+  OneDrive is kept that long after the user is deleted. After it ends, the site can still sit in the site collection
+  recycle bin for up to 93 days, recoverable by a SharePoint administrator (SharePoint admin centre or PowerShell).
+  Retention policies or holds can keep it longer - check with whoever manages compliance before saying it's gone.
 - Files deleted from a live user's OneDrive: `ecppro_mailbox view=onedrive_restore_preview` shows what a recycle-bin
   restore would bring back since a date. It **changes nothing**.
 - EcpPro can preview but **cannot run** the restore: the user restores from their OneDrive recycle bin, or an admin

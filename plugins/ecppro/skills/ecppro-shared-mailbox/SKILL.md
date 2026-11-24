@@ -16,7 +16,8 @@ Uses the EcpPro MCP server's tools. Before first using a view or action, call
 ## 2. Create
 
 - Shared: `ecppro_mailbox_change action=create_shared_mailbox` (display name, alias, address). It is created with
-  sign-in blocked, as a shared mailbox should be, and needs no licence unless it grows past 50 GB or needs an archive.
+  sign-in blocked, as a shared mailbox should be, and needs no licence unless it grows past 50 GB, needs an archive,
+  or needs litigation hold (`ecppro_mailbox view=litigation_hold_capable` says whether it is licensed for it).
 - Room or equipment: `ecppro_mailbox_change action=create_room` (with room or equipment as the type).
 - Turning a leaver's mailbox into a shared one is part of offboarding - use the `ecppro-offboard-user` skill.
 

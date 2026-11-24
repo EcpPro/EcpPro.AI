@@ -19,7 +19,7 @@ bounce message. A bounce's text usually names the cause - ask for it.
 | Check | View | What to look for |
 |---|---|---|
 | Overall flow | `ecppro_mailbox view=mail_flow` | A jump in failed or spam counts, and when it started |
-| Domain DNS | `ecppro_mailbox view=dns_checks` | MX not pointing at Exchange Online, SPF missing a sender or over the lookup limit, DKIM not signing, DMARC `p=reject` with failing senders |
+| Domain DNS | `ecppro_mailbox view=dns_checks` | SPF missing a sender or over the lookup limit, DKIM not signing, DMARC `p=reject` with failing senders. MX: pointing at Exchange Online is right unless the tenant uses a third-party mail gateway (filtering service or smart host) - confirm which before calling an MX "wrong", and check the gateway's connector before any DNS change |
 | Mail flow rules | `ecppro_mailbox view=transport_rules`, then `ecppro_mailbox view=transport_rule` | A rule that redirects, deletes, quarantines or bypasses filtering for the affected mail |
 | The address | `ecppro_mailbox view=find_address` | Which recipient holds it - a typo, a contact or another mailbox can "steal" an address |
 | The mailbox | `ecppro_mailbox view=search`, `ecppro_mailbox view=statistics` | Mailbox exists, isn't full (quota) |
