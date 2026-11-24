@@ -16,6 +16,16 @@ ignored or wrong can never make a change the server would refuse.
 | `ecppro-licence-review` | licence savings: reclaimable and unused licences, right-sizing, recommendations with cost, and unbilled services for the MSP |
 | `ecppro-customer-report` | a monthly or QBR report for a customer: work done, security trend, licences and spend, recommendations - every number from EcpPro |
 | `ecppro-seat-change` | a billed CSP seat change: current quantity, cancellation window, approver, then the subscription workflow after an explicit yes |
+| `ecppro-workflow-troubleshoot` | why a workflow or scheduled action is stuck or failed: runs, steps, logs, bulk batches; then retry, skip, cancel, pause or resume |
+| `ecppro-baseline-compliance` | baseline drift and compliance, accepted risks, Conditional Access readiness, scan permissions; re-scan or accept a risk (mode checked first) |
+| `ecppro-patch-compliance` | a read-only Windows patch report for a tenant or all customers, separating missing updates from stale devices |
+| `ecppro-mail-delivery` | email not arriving or going to junk: mail flow, MX / SPF / DKIM / DMARC, transport rules, address owner, junk and inbox rules |
+| `ecppro-group-management` | find groups, check members and owners, add or remove people, create, rename or delete, and set outside-sender delivery |
+| `ecppro-restore-deleted` | restore a deleted user with their groups, preview a OneDrive restore, and find restorable deleted sites and groups |
+| `ecppro-tenant-connection` | why EcpPro can't manage a tenant: consent, Graph permissions, roles, GDAP; re-check or create a consent link |
+| `ecppro-shared-mailbox` | create shared, room and equipment mailboxes; access, auto-reply, aliases and hiding from the address book |
+| `ecppro-lost-device` | a lost or stolen device: block its sign-in, sign the user out, reset MFA if the phone went too; re-enable if found |
+| `ecppro-msp-billing-check` | internal month-end check: unbilled services, billed vs actual, distributor drift, stuck purchases |
 
 ## Install (Claude Code)
 

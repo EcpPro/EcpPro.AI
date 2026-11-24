@@ -8,7 +8,7 @@ EcpPro), and these skills give it the playbook (how to do a common job well).
 
 | Plugin | What it gives the assistant |
 |---|---|
-| [`ecppro`](plugins/ecppro) | Workflow skills: onboarding, offboarding, mailbox / calendar access, ticket triage, sign-in help, compromised account response, security and licence reviews, customer (QBR) reports, subscription seat changes |
+| [`ecppro`](plugins/ecppro) | 20 workflow skills: onboarding, offboarding, mailbox and shared mailbox access, groups, ticket triage, sign-in help, compromised accounts, lost devices, security, baseline, patch and licence reviews, mail delivery, restores, tenant connection, workflow troubleshooting, customer (QBR) reports, subscription seat changes and an MSP billing check |
 
 ## Install (Claude Code)
 
