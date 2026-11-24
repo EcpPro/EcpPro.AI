@@ -27,7 +27,9 @@ Ask, in one message, what should happen (suggest the usual defaults):
   `live=true`; the stored figure can be stale) and keep the licence if it is near or over 50 GB or can't be read.
   The same live read shows `archiveStatus` (anything but `None` means an online archive) and `litigationHoldEnabled`:
   keep the licence if either is set, or if the live read fails. (`view=litigation_hold_capable` only says whether a
-  hold is *possible*, not whether one is on.)
+  hold is *possible*, not whether one is on.) EcpPro can't see Purview retention policies or eDiscovery holds (the
+  live `retentionPolicy` field is the Exchange MRM policy, not a hold), and they can need a licence too: if the
+  customer uses them, or nobody knows, keep the licence until whoever manages compliance confirms.
 - **Workflow:** does the tenant have an offboarding workflow that should run instead of the steps by hand?
 
 ## 3. Run it, one previewed step at a time
