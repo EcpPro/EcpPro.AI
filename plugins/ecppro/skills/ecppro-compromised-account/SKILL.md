@@ -35,7 +35,11 @@ Summarise what points to compromise and what doesn't, in a few lines.
 ## 3. Contain - propose the steps, then run each with its own yes
 
 Suggested order (the requester can drop any):
-1. `ecppro_users_change action=revoke_sessions` - signs the user out everywhere.
+1. `ecppro_users_change action=revoke_sessions` - revokes the user's refresh tokens and session cookies, so no
+   device can renew a sign-in. It does **not** stop a new sign-in: anyone who still has the password (and can pass
+   MFA) can sign in again, which is why steps 2-4 follow. Access tokens already issued stay valid until they expire
+   (by default 60-90 minutes, longer for some Microsoft 365 apps in tenants without Conditional Access; Continuous
+   Access Evaluation can cut eligible tokens off sooner).
 2. `ecppro_users_change action=disable` - blocks sign-in (undo: `enable`). Skip it if the user must keep working
    and the requester accepts the risk.
 3. `ecppro_users_change action=reset_password` - ask who receives the one-time link (the user's manager, the
