@@ -22,8 +22,10 @@ Act quickly, but on the right device and the right person.
 
 1. `ecppro_devices_change action=disable` - blocks sign-in **on that device** in Entra. Nothing is wiped.
 2. `ecppro_users_change action=revoke_sessions` - revokes the user's refresh tokens and session cookies, so the
-   lost device can't renew its sign-in. An access token it already holds stays valid until it expires (usually
-   within an hour); together with step 1 the device can't get a new one after that.
+   lost device can't renew its sign-in. It does not stop a fresh sign-in with the password - steps 3 and 4
+   cover that. An access token the device already holds stays valid until it expires
+   (by default 60-90 minutes, longer for some Microsoft 365 apps in tenants without Conditional Access; Continuous
+   Access Evaluation can cut eligible tokens off sooner).
 3. If the lost device was their phone: `ecppro_users_change action=require_mfa_reregistration` - removes their MFA
    methods so the lost phone can't approve sign-ins; they register a new phone at next sign-in (password unchanged).
 4. If the password may have been saved on the device: `ecppro_users_change action=reset_password` (ask who gets the
