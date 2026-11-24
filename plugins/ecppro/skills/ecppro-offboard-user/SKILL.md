@@ -19,14 +19,17 @@ Uses the EcpPro MCP server's tools. Before first using a view or action, call
 Ask, in one message, what should happen (suggest the usual defaults):
 - **Sign-in:** block now, or at a set date/time?
 - **Mailbox:** convert to shared, and/or give someone access (who, and with which permissions)?
-- **Forwarding:** forward new mail to someone, keeping a copy or not? EcpPro can't read the leaver's current
-  forward, and setting one **replaces** it - say so and check that replacing is intended.
+- **Forwarding:** forward new mail to someone, keeping a copy or not? `ecppro_mailbox view=statistics` (the stored row, refreshed daily) says whether a forward was set at its last
+  read - `hasForwarding`, `deliverToMailboxAndForward` (keeps a copy) and `forwardingReadUtc` - but not where it goes. Setting one
+  **replaces** any existing forward - if one is set, say so and check that replacing is intended.
 - **Licences:** remove (after the mailbox is shared)? A shared mailbox still needs a licence if it is over 50 GB,
   has an online archive, or is on litigation hold. Read the size **live** (`ecppro_mailbox view=statistics` with
   `live=true`; the stored figure can be stale) and keep the licence if it is near or over 50 GB or can't be read.
-  EcpPro does **not** report whether an archive or an active hold exists (`view=litigation_hold_capable` only says whether a
-  hold is possible). So keep the licence unless the requester confirms - from the portal or the Exchange admin
-  centre - that there is no archive and no hold.
+  The same live read shows `archiveStatus` (anything but `None` means an online archive) and `litigationHoldEnabled`:
+  keep the licence if either is set, or if the live read fails. (`view=litigation_hold_capable` only says whether a
+  hold is *possible*, not whether one is on.) EcpPro can't see Purview retention policies or eDiscovery holds (the
+  live `retentionPolicy` field is the Exchange MRM policy, not a hold), and they can need a licence too: if the
+  customer uses them, or nobody knows, keep the licence until whoever manages compliance confirms.
 - **Workflow:** does the tenant have an offboarding workflow that should run instead of the steps by hand?
 
 ## 3. Run it, one previewed step at a time

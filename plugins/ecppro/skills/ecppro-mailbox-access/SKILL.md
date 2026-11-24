@@ -25,8 +25,11 @@ Uses the EcpPro MCP server's tools. Before first using a view or action, call
 
 Full Access lets the delegate read, change and **delete** anything in the mailbox - say so if they only need to read.
 
-**Forwarding is different:** EcpPro cannot read a mailbox's current forward, and setting one **replaces** any
-forward already there. Tell the requester both before offering it, and ask whether replacing is intended.
+**Forwarding is different:** EcpPro can't show where a mailbox's current forward goes, only whether there is one:
+`ecppro_mailbox view=statistics` (the stored row, refreshed daily) gives `hasForwarding`, `deliverToMailboxAndForward`
+(keeps a copy) and `forwardingReadUtc` (when it was read).
+Setting a forward **replaces** any forward already there - if one is set, tell the requester and ask whether
+replacing is intended.
 
 ## 2. Check the current state first
 
@@ -37,7 +40,7 @@ forward already there. Tell the requester both before offering it, and ask wheth
   one, propose `remove_calendar_permission` and then `add_calendar_permission` with the new role, each previewed
   and approved - and say the grantee briefly has no access in between. To take access away use
   `remove_delegate` / `remove_calendar_permission`.
-- Forwarding: there is no state to read (see above).
+- Forwarding: only whether one is set, from the stored statistics row (see above).
 
 ## 3. Preview, then confirm on the user's say-so
 
@@ -53,9 +56,9 @@ yes, then call it once.
 
 These changes are queued as action items. Check with `ecppro_workflows view=action_items` (or
 `view=action_item`). For delegates and calendar permissions, then re-read `view=delegates` /
-`view=calendar_permissions` to confirm Exchange shows it (it can take a few minutes). **Forwarding can't be
-verified through a mailbox read** - the action item's result is the only confirmation here; for more, check the
-portal or Exchange admin centre.
+`view=calendar_permissions` to confirm Exchange shows it (it can take a few minutes). **Forwarding is
+confirmed by the action item's result**, which reports the target Exchange actually holds after the change (EcpPro
+reads it back). The stored statistics row shows `hasForwarding` from its next daily read.
 
 ## Always
 
