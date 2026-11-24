@@ -11,7 +11,7 @@
       "name": "ecppro",
       "source": "./plugins/ecppro",
       "description": "Workflow skills for the EcpPro MCP server: onboarding and offboarding, mailbox, shared mailbox and group management, ticket triage, sign-in help, compromised accounts and lost devices, security, baseline, patch and licence reviews, mail delivery, restores, tenant connection, workflow troubleshooting, customer reports, seat changes and an MSP billing check.",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "license": "MIT",
       "homepage": "https://www.ecppro.com/mcp/setup/"
     }

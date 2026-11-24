@@ -25,7 +25,9 @@ active; otherwise do the quick checks in step 2 first.
   persistence: rules on "invoice", "payment", or moving everything to RSS Feeds / Archive).
 - `ecppro_mailbox view=delegates` - unexpected Full Access or Send As holders.
 - `ecppro_users view=mfa_methods` - methods the user doesn't recognise (an attacker's phone or authenticator).
-- Forwarding can't be read through EcpPro (`ecppro_mailbox view=settings` always shows it empty) - say so.
+- Forwarding: `ecppro_mailbox view=statistics` (stored row) shows whether a forward was set at its last daily
+  read (`hasForwarding`, `forwardingReadUtc`) but not the target; `ecppro_mailbox view=settings` never shows it. A
+  forward the user didn't set is a classic sign of compromise - cancel it (step 6).
 
 If a per-user view fails, fall back to the tenant-wide ones: `ecppro_security view=signins`,
 `ecppro_security view=risky_signins` and `ecppro_security view=risk_detections`, and pick this user's rows.
